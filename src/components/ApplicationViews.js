@@ -13,15 +13,14 @@ export const ApplicationViews = () => {
     const [currentStep, setCurrentStep] = useState(emptyStep)
     return (
         <>
-            <StepsProvider>
+            {/* Render the location list when http://localhost:3000/ */}
                 <Route exact path="/">
                     <Home />
                 </Route>
-            </StepsProvider>
 
+            {/* Render the steps list when http://localhost:3000/steps */}
             <StepsProvider>
                 <Route exact path="/steps">
-                    <Home />
                     <StepsList />
                 </Route>
             </StepsProvider>
