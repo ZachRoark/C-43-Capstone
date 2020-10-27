@@ -1,0 +1,9 @@
+.footer_item {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(95, 95, 95);
+    color: rgb(55, 155, 218);
+    text-align: center;
+  }

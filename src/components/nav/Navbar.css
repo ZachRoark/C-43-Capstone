@@ -1,0 +1,14 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.navbar__archive {
+    flex-basis: 20%;
+    list-style-type: none;
+}
+.navbar__home {
+    flex-basis: 20%;
+    list-style-type: none;
+}
