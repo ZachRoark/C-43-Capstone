@@ -4,11 +4,11 @@ import {Link} from "react-router-dom"
 
 
 
-export const StepsCard = ({ steps }) => (
-    <section className="steps">
+export const StepsCard = ({ steps, index }) => (
+    <section className="stepsCard">
         <h3 className="stepName"></h3>
             <Link to={`/steps/detail/${steps.id}`}>
-                Step ___ :_{ steps.stepName }
+                Step {index +1}:_{ steps.stepName }
             </Link>
        
         <div className="stepsSummary">Summary :{ steps.summary }</div>

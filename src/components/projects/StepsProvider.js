@@ -7,6 +7,7 @@ export const StepsProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("");
 
     const getSteps = () => {
+        console.log ("get steps (stepsprovider)")
         return fetch(`http://localhost:8088/steps`)
             .then(response => response.json())
             .then(setSteps)
@@ -24,11 +25,12 @@ export const StepsProvider = (props) => {
     }
 
     const getStepsById = (id) => {
-        return fetch(`http://localhost:8088/steps/${id}`)
+        return fetch(`http://localhost:8088/steps/${id}?_expand=user`)
             .then(response => response.json())
     }
 
     const deleteSteps = stepsId => {
+        console.log("delete step (steps provider)")
         return fetch(`http://localhost:8088/steps/${stepsId}`, {
             method: "DELETE"
         })
@@ -51,6 +53,6 @@ export const StepsProvider = (props) => {
             steps, getSteps, editSteps, deleteSteps, addSteps, getStepsById, setSearchTerms, searchTerms
         }}>
             {props.children}
-            </StepsContext.Provider>
+        </StepsContext.Provider>
     )
 }
