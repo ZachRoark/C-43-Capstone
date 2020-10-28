@@ -23,21 +23,15 @@ export const ApplicationViews = () => {
                 <Route exact path="/steps">
                     <StepsList />
                 </Route>
-            </StepsProvider>
 
-            <StepsProvider>
                 <Route exact path="/steps/create">
                     <StepsForm step={currentStep} setCurrentStep={setCurrentStep}/>
                 </Route>
-            </StepsProvider>
 
-            <StepsProvider>
                 <Route exact path="/steps/detail/:stepsId(\d+)">
                     <StepsDetail step={currentStep} setCurrentStep={setCurrentStep}/>
                 </Route>
-            </StepsProvider>
 
-            <StepsProvider>
                 <Route exact path="/steps/edit/:stepsId(\d+)">
                     <StepsForm step={currentStep} setCurrentStep={setCurrentStep}/>
                 </Route>

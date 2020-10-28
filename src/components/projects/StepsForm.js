@@ -10,22 +10,13 @@ export const StepsForm = ({step, setCurrentStep}) => {
     const {StepsId} = useParams()
     const history = useHistory()
 
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
 
-// written here to not forget
-// when looping through the array of api objects, precede step name with "step" (array id +1)
-// figure out where and how to write that, brain fog currently activated
     const handleControlledInputChange = (event) => {
         const newSteps = {...step}
         newSteps[event.target.title] = event.target.value
-        // console.log("newSteps: ", newSteps);
         setCurrentStep(newSteps)
     }
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
-// o0o0oo0o0o0o0o0o0o0o0o00oo0o0o0o0o0
+
 
     // useEffect(() => {
     //     getSteps().then(() => {
@@ -44,7 +35,7 @@ export const StepsForm = ({step, setCurrentStep}) => {
 
     const constructStepsObject = () => {
         if(parseInt(step.stepName) === 0) {
-            window.alert("Select a step")
+            // window.alert("Select a step")
         } else {
             setIsLoading(true)
             if(step.id){
