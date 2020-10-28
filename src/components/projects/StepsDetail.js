@@ -21,7 +21,7 @@ export const StepsDetail = ({step, setCurrentStep}) => {
 
 
 	return (
-		<section className="steps">
+		<section className="stepsCard">
 			<h3 className="stepName">{step.stepName}</h3>
             <div className="stepsSummary">{step.summary}</div>
             <div className="estimateTime">{step.estimateTime}</div>

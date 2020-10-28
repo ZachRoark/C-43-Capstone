@@ -1,47 +1,43 @@
 import React, { useContext, useEffect, useState } from "react"
-import { StepsContext } from "./StepsProvider"
-import { StepsCard } from "./StepsCard"
+import { PrepContext } from "./PrepProvider"
+import { PrepCard } from "./PrepCard"
 import { useHistory } from "react-router-dom"
 // import "./Steps.css"
 
-export const StepsList = () => {
-    console.log("stepslist stepslist")
-    const { steps, getSteps, searchTerms } = useContext(StepsContext)
-    const [ filteredSteps, setFilteredSteps ] = useState([])
+export const PrepList = () => {
+    console.log("preplist preplist")
+    const { prepObj, getPrep, searchTerms } = useContext(PrepContext)
+    const [ filteredPrep, setFilteredPrep ] = useState([])
     const history = useHistory()
 
     useEffect(() => {
-        getSteps()
+        getPrep()
     }, [])
 
 
-
-// written here to not forget
-// when looping through the array of api objects, precede prep name with "prep" (array id +1)
-// figure out where and how to write that, brain fog currently activated
     useEffect(() => {
         if(searchTerms !== "") {
-            const subset = steps.filter(prep => prep.stepName.toLowerCase().includes(searchTerms.toLowerCase().trim()))
-            setFilteredSteps(subset)
+            const subset = prepObj.filter(prepObj => prepObj.prepName.toLowerCase().includes(searchTerms.toLowerCase().trim()))
+            setFilteredPrep(subset)
             console.log(subset)
         } else {
-            setFilteredSteps(steps)
-            console.log("else stepslist")
+            setFilteredPrep(prepObj)
+            console.log("else prepList")
         }
-    }, [searchTerms, steps])
+    }, [searchTerms, prepObj])
 
 
     return (
         <>
-            <h2>Steps</h2>
-            <button onClick={() => {history.push("/steps/create")}}>
-                Create Step
+            <h2>Prep</h2>
+            <button onClick={() => {history.push("/prep/create")}}>
+                Create Prep
             </button>
 
-            <div className="steps">
+            <div className="prepObj">
                 {
-                    filteredSteps.map((steps, index) => {
-                        return <StepsCard key={steps.id} steps={steps} index={index}/>
+                    filteredPrep.map((prepObj, index) => {
+                        return <PrepCard key={prepObj.id} prepObj={prepObj} index={index}/>
                         })
                 }
             </div>

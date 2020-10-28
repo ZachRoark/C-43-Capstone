@@ -17,23 +17,7 @@ export const StepsForm = ({step, setCurrentStep}) => {
         setCurrentStep(newSteps)
     }
 
-
-    // useEffect(() => {
-    //     getSteps().then(() => {
-    //         if(StepsId) {
-    //             getStepsById(StepsId)
-    //             .then(steps => {
-    //                 setCurrentStep(steps)
-    //                 setIsLoading(false)
-    //             })
-    //         }else {
-    //             setIsLoading(false)
-    //         }
-    //     })
-    // }, [getSteps, getStepsById, setCurrentStep, setIsLoading, StepsId, step])
-
-
-    const constructStepsObject = () => {
+const constructStepsObject = () => {
         if(parseInt(step.stepName) === 0) {
             // window.alert("Select a step")
         } else {
@@ -65,7 +49,6 @@ export const StepsForm = ({step, setCurrentStep}) => {
             }
         }
     }
-
 
     return (
         <form className="stepsForm">

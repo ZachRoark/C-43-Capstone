@@ -1,58 +1,44 @@
 import React, { useContext, useEffect } from "react"
-import { StepsContext } from "./StepsProvider"
+import { PrepContext } from "./PrepProvider"
 import { useParams, useHistory } from "react-router-dom"
 // import "./Steps.css"
 
-export const StepsDetail = ({prep, setCurrentStep}) => {
-	console.log("stepsdetail #1(stepsdetail)")
-	const { getStepsById , deleteSteps} = useContext(StepsContext)
-	console.log("stepsdetail #2(stepsdetail)")
-	const { stepsId } = useParams();
+export const PrepDetail = ({prepObj, setCurrentPrep}) => {
+	console.log("prepdetail #1(prepdetail)")
+	const { getPrepById , deletePrep} = useContext(PrepContext)
+	console.log("prepdetail #2(prepdetail)")
+	const { prepId } = useParams();
 	const history = useHistory();
 	
 
 	useEffect(() => {
-		console.log("useeffect (stepsdetail)")
-		getStepsById(stepsId)
+		console.log("useeffect (prepdetail)")
+		getPrepById(prepId)
 			.then((response) => {
-				setCurrentStep(response)
+				setCurrentPrep(response)
 			})
-	}, [stepsId])
+	}, [prepId])
 
 
 	return (
-		<section className="steps">
-			<h3 className="stepName">{prep.stepName}</h3>
-            <div className="stepsSummary">{prep.summary}</div>
-            <div className="estimateTime">{prep.estimateTime}</div>
-            <div className="stepsImg">{prep.referenceImg}</div>
-			
+		<section className="prepCard">
+			<h3 className="prepName">{prepObj.prepName}</h3>
             
             <button onClick={() => {
-				deleteSteps(prep.id)
+				deletePrep(prepObj.id)
 				
 					.then(() => {
-						console.log(prep, prep.id, "delete button")
-						history.push(`/steps`)
+						console.log(prepObj, prepObj.id, "delete button")
+						history.push(`/prep`)
 					})
-				}}>Delete Step 
+				}}>Delete Prep 
 			</button>
 
 
 			<button onClick={() => {
-				history.push(`/steps/edit/${prep.id}`)
+				history.push(`/prep/edit/${prepObj.id}`)
 			}}>Edit
 			</button>
-
-
-            {/* <button onClick={
-				() => {
-					completeSteps(prep.id)
-						.then(() => {
-							history.push("/steps")
-						})
-				}}>Step Complete 
-			</button> */}
 		</section>
 	)
 }

@@ -53,6 +53,6 @@ export const StepsProvider = (props) => {
             steps, getSteps, editSteps, deleteSteps, addSteps, getStepsById, setSearchTerms, searchTerms
         }}>
             {props.children}
-            </StepsContext.Provider>
+        </StepsContext.Provider>
     )
 }

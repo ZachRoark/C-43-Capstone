@@ -1,16 +1,26 @@
 import React, {useState} from "react";
 import { Route } from "react-router-dom";
+
 import { StepsProvider } from "./projects/StepsProvider"
 import { StepsList } from "./projects/StepsList"
 import { StepsForm } from "./projects/StepsForm"
 import { StepsDetail } from "./projects/StepsDetail"
+
+import { PrepProvider } from "./projects/PrepProvider"
+import { PrepList } from "./projects/PrepList"
+import { PrepForm } from "./projects/PrepForm"
+import { PrepDetail } from "./projects/PrepDetail"
+
 import { Home } from "./Home"
 
 
 
 export const ApplicationViews = () => {
     const emptyStep = { stepName: "", id: 0, summary: "", estimateTime: null, referenceImg: ""}
+    const emptyPrep = { prepName: "", id: 0 }
     const [currentStep, setCurrentStep] = useState(emptyStep)
+    const [currentPrep, setCurrentPrep] = useState(emptyPrep)
+    
     return (
         <>
             {/* Render the location list when http://localhost:3000/ */}
@@ -19,23 +29,23 @@ export const ApplicationViews = () => {
                 </Route>
 
             {/* Render the prep list when http://localhost:3000/prep */}
-            <StepsProvider>
+            <PrepProvider>
                 <Route exact path="/prep">
-                    <StepsList />
+                    <PrepList />
                 </Route>
 
                 <Route exact path="/prep/create">
-                    <StepsForm prep={currentStep} setCurrentStep={setCurrentStep}/>
+                    <PrepForm prep={currentPrep} setCurrentPrep={setCurrentPrep}/>
                 </Route>
 
-                <Route exact path="/prep/detail/:stepsId(\d+)">
-                    <StepsDetail prep={currentStep} setCurrentStep={setCurrentStep}/>
+                <Route exact path="/prep/detail/:prepId(\d+)">
+                    <PrepDetail prep={currentPrep} setCurrentPrepp={setCurrentPrep}/>
                 </Route>
 
-                <Route exact path="/prep/edit/:stepsId(\d+)">
-                    <StepsForm prep={currentStep} setCurrentStep={setCurrentStep}/>
+                <Route exact path="/prep/edit/:prepId(\d+)">
+                    <PrepForm prep={currentPrep} setCurrentPrep={setCurrentPrep}/>
                 </Route>
-            </StepsProvider>
+            </PrepProvider>
 
             {/* Render the steps list when http://localhost:3000/steps */}
             <StepsProvider>

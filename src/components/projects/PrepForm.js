@@ -1,124 +1,71 @@
 import React, { useContext, useEffect, useState } from "react"
-import { StepsContext } from "./StepsProvider"
+import { PrepContext } from "./PrepProvider"
 import { useHistory, useParams } from "react-router-dom"
-import "./Steps.css"
+// import "./Steps.css"
 
-export const StepsForm = ({prep, setCurrentStep}) => {
-    const { addSteps, getStepsById, editSteps, getSteps, } = useContext(StepsContext)
-    const { stepName, id, summary, estimateTime, referenceImg} = prep;
+export const PrepForm = ({prepObj, setCurrentPrep}) => {
+    const { addPrep, getPrepById, editPrep, getPrep, } = useContext(PrepContext)
+    const { prepName, id, summary, estimateTime, referenceImg } = prepObj;
     const [isLoading, setIsLoading] = useState(false)
-    const {StepsId} = useParams()
+    const {PrepId} = useParams()
     const history = useHistory()
 
 
     const handleControlledInputChange = (event) => {
-        const newSteps = {...prep}
-        newSteps[event.target.title] = event.target.value
-        setCurrentStep(newSteps)
+        const newPrep = {...prepObj}
+        newPrep[event.target.title] = event.target.value
+        setCurrentPrep(newPrep)
     }
-
-
-    // useEffect(() => {
-    //     getSteps().then(() => {
-    //         if(StepsId) {
-    //             getStepsById(StepsId)
-    //             .then(steps => {
-    //                 setCurrentStep(steps)
-    //                 setIsLoading(false)
-    //             })
-    //         }else {
-    //             setIsLoading(false)
-    //         }
-    //     })
-    // }, [getSteps, getStepsById, setCurrentStep, setIsLoading, StepsId, prep])
-
-
-    const constructStepsObject = () => {
-        if(parseInt(prep.stepName) === 0) {
-            // window.alert("Select a prep")
+    
+    const constructPrepObject = () => {
+        if(parseInt(prepObj.prepName) === 0) {
         } else {
             setIsLoading(true)
-            if(prep.id){
+            if(prepObj.id){
                 console.log("edit thing")
-                editSteps({
-                    id: prep.id,
-                    stepName: prep.stepName,
-                    summary: prep.summary,
-                    estimateTime: prep.estimateTime,
-                    complete: prep.complete,
-                    userId: parseInt(prep.userId)
+                editPrep({
+                    id: prepObj.id,
+                    prepName: prepObj.prepName,
+                    userId: parseInt(prepObj.userId)
                 })
-                .then(() => setCurrentStep({}))
-                .then(() => history.push("/steps"))
-                // .then(() => console.log("Updating Step: ", StepsId))
+                .then(() => setCurrentPrep({}))
+                .then(() => history.push("/prep"))
             }else {
-                addSteps({
-                    stepName: prep.stepName,
-                    summary: prep.summary,
-                    estimateTime: prep.estimateTime,
-                    complete: prep.complete = false,
+                addPrep({
+                    prepName: prepObj.prepName,
                     userId: parseInt(localStorage.getItem("craftit_user"))
                 })
-                .then(() => setCurrentStep({}))
-                .then(() => history.push("/steps"))
-                // .then(() => console.log("Adding new Step"))
+                .then(() => setCurrentPrep({}))
+                .then(() => history.push("/prep"))
             }
         }
     }
 
 
     return (
-        <form className="stepsForm">
-            <h2 className="stepsForm">{prep && id ? "Edit Step:" : "Create Step:"}</h2>
+        <form className="prepForm">
+            <h2 className="prepForm">{prepObj && id ? "Edit Prep:" : "Create Prep:"}</h2>
 
             <fieldset>
                 <div className="from-group">
-                    <label htmlFor="stepName">Step Name:</label>
-                    <input type="text" id="stepName" title="stepName" required autoFocus className="from-control"
-                    placeholder="Enter Step Name"
+                    <label htmlFor="prepName">Prep Name:</label>
+                    <input type="text" id="prepName" title="prepName" required autoFocus className="from-control"
+                    placeholder="Enter Prep Name"
                     onChange={handleControlledInputChange}
-                    defaultValue={stepName}/>
+                    defaultValue={prepName}/>
                 </div>
             </fieldset>
 
-            <fieldset>
-                <div className="from-group">
-                    <label htmlFor="stepsSummary">Summary:</label>
-                    <input type="text" id="stepsSummary" title="summary" required autoFocus className="from-control"
-                    placeholder="Enter Summary"
-                    onChange={handleControlledInputChange}
-                    defaultValue={summary}/>
-                </div>
-            </fieldset>
 
-            <fieldset>
-                <div className="from-group">
-                    <label htmlFor="estimateTime">Estimated Time:</label>
-                    <input type="text" id="estimateTime" title="estimateTime" required autoFocus className="from-control"
-                    placeholder="Enter Estimated Time"
-                    onChange={handleControlledInputChange}
-                    defaultValue={estimateTime}/>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div className="from-group">
-                    <label htmlFor="stepReferenceImg">Media Reference:</label>
-                    <input type="text" id="stepReferenceImg" title="stepReferenceImg" required autoFocus className="from-control"
-                    placeholder="Enter Reference Media"
-                    onChange={handleControlledInputChange}
-                    defaultValue={referenceImg}/>
-                </div>
-            </fieldset>
 
             <button type="submit" 
                 className="btn btn-primary"
                 disabled={isLoading}
                 onClick={event => {
                     event.preventDefault() 
-                    constructStepsObject()
+                    constructPrepObject()
                 }}>
-            {prep && id ? "Save Step" : "Create Step"}</button>
+            {prepObj && id ? "Save Prep" : "Create Prep"}</button>
         </form>
     )
 }

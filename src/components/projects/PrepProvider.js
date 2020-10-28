@@ -1,58 +1,58 @@
 import React, { createContext, useState } from "react"
 
-export const StepsContext = createContext();
+export const PrepContext = createContext();
 
-export const StepsProvider = (props) => {
-    const [steps, setSteps] = useState([]);
+export const PrepProvider = (props) => {
+    const [prepObj, setPrep] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
 
-    const getSteps = () => {
-        console.log ("get steps (stepsprovider)")
-        return fetch(`http://localhost:8088/steps`)
+    const getPrep = () => {
+        console.log ("get prepObj (PrepProvider)")
+        return fetch(`http://localhost:8088/prep`)
             .then(response => response.json())
-            .then(setSteps)
+            .then(setPrep)
     }
 
-    const addSteps = (x) => {
-        return fetch(`http://localhost:8088/steps`, {
+    const addPrep = (x) => {
+        return fetch(`http://localhost:8088/prep`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(x)
         })
-            .then(getSteps)
+            .then(getPrep)
     }
 
-    const getStepsById = (id) => {
-        return fetch(`http://localhost:8088/steps/${id}?_expand=user`)
+    const getPrepById = (id) => {
+        return fetch(`http://localhost:8088/prep/${id}?_expand=user`)
             .then(response => response.json())
     }
 
-    const deleteSteps = stepsId => {
-        console.log("delete prep (steps provider)")
-        return fetch(`http://localhost:8088/steps/${stepsId}`, {
+    const deletePrep = prepId => {
+        console.log("delete prepObj (prep provider)")
+        return fetch(`http://localhost:8088/prep/${prepId}`, {
             method: "DELETE"
         })
-        .then(getSteps)
+        .then(getPrep)
     }
 
-    const editSteps = steps => {
-        return fetch(`http://localhost:8088/steps/${steps.id}`, {
+    const editPrep = prepObj => {
+        return fetch(`http://localhost:8088/prep/${prepObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(steps)
+            body: JSON.stringify(prepObj)
         })
-            .then(getSteps)
+            .then(getPrep)
     }
 
     return (
-        <StepsContext.Provider value={{
-            steps, getSteps, editSteps, deleteSteps, addSteps, getStepsById, setSearchTerms, searchTerms
+        <PrepContext.Provider value={{
+            prepObj, getPrep, editPrep, deletePrep, addPrep, getPrepById, setSearchTerms, searchTerms
         }}>
             {props.children}
-            </StepsContext.Provider>
+        </PrepContext.Provider>
     )
 }

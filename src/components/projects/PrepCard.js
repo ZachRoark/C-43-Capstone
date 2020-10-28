@@ -4,14 +4,10 @@ import {Link} from "react-router-dom"
 
 
 
-export const StepsCard = ({ prep, index }) => (
-    <section className="prepcard">
-        <h3 className="stepName"></h3>
-            <Link to={`/prepbox/detail/${prep.id}`}>
-                Prep {index +1} :_{ prep.stepName }
-            </Link>
-
-        <div className="stepsSummary">Summary :{ prep.summary }</div>
-
+export const PrepCard = ({ prepObj, index }) => (
+    <section className="prepCard">
+        <h3 className="prepName"></h3>
+            <Link to={`/prep/detail/${prepObj.id}`}>{index +1}: 
+            { prepObj.prepName }</Link>
     </section>
 )
