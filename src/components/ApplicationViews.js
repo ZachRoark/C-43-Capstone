@@ -18,6 +18,25 @@ export const ApplicationViews = () => {
                     <Home />
                 </Route>
 
+            {/* Render the prep list when http://localhost:3000/prep */}
+            <StepsProvider>
+                <Route exact path="/prep">
+                    <StepsList />
+                </Route>
+
+                <Route exact path="/prep/create">
+                    <StepsForm prep={currentStep} setCurrentStep={setCurrentStep}/>
+                </Route>
+
+                <Route exact path="/prep/detail/:stepsId(\d+)">
+                    <StepsDetail prep={currentStep} setCurrentStep={setCurrentStep}/>
+                </Route>
+
+                <Route exact path="/prep/edit/:stepsId(\d+)">
+                    <StepsForm prep={currentStep} setCurrentStep={setCurrentStep}/>
+                </Route>
+            </StepsProvider>
+
             {/* Render the steps list when http://localhost:3000/steps */}
             <StepsProvider>
                 <Route exact path="/steps">
@@ -36,7 +55,6 @@ export const ApplicationViews = () => {
                     <StepsForm step={currentStep} setCurrentStep={setCurrentStep}/>
                 </Route>
             </StepsProvider>
-            
         </>
     )
 }

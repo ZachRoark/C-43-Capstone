@@ -17,11 +17,11 @@ export const StepsList = () => {
 
 
 // written here to not forget
-// when looping through the array of api objects, precede step name with "step" (array id +1)
+// when looping through the array of api objects, precede prep name with "prep" (array id +1)
 // figure out where and how to write that, brain fog currently activated
     useEffect(() => {
         if(searchTerms !== "") {
-            const subset = steps.filter(step => step.stepName.toLowerCase().includes(searchTerms.toLowerCase().trim()))
+            const subset = steps.filter(prep => prep.stepName.toLowerCase().includes(searchTerms.toLowerCase().trim()))
             setFilteredSteps(subset)
             console.log(subset)
         } else {

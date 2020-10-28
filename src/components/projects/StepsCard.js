@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 
 
 export const StepsCard = ({ steps, index }) => (
-    <section className="steps">
+    <section className="stepscard">
         <h3 className="stepName"></h3>
             <Link to={`/steps/detail/${steps.id}`}>
                 Step {index +1} :_{ steps.stepName }

@@ -3,7 +3,7 @@ import { StepsContext } from "./StepsProvider"
 import { useParams, useHistory } from "react-router-dom"
 // import "./Steps.css"
 
-export const StepsDetail = ({step, setCurrentStep}) => {
+export const StepsDetail = ({prep, setCurrentStep}) => {
 	console.log("stepsdetail #1(stepsdetail)")
 	const { getStepsById , deleteSteps} = useContext(StepsContext)
 	console.log("stepsdetail #2(stepsdetail)")
@@ -22,17 +22,17 @@ export const StepsDetail = ({step, setCurrentStep}) => {
 
 	return (
 		<section className="steps">
-			<h3 className="stepName">{step.stepName}</h3>
-            <div className="stepsSummary">{step.summary}</div>
-            <div className="estimateTime">{step.estimateTime}</div>
-            <div className="stepsImg">{step.referenceImg}</div>
+			<h3 className="stepName">{prep.stepName}</h3>
+            <div className="stepsSummary">{prep.summary}</div>
+            <div className="estimateTime">{prep.estimateTime}</div>
+            <div className="stepsImg">{prep.referenceImg}</div>
 			
             
             <button onClick={() => {
-				deleteSteps(step.id)
+				deleteSteps(prep.id)
 				
 					.then(() => {
-						console.log(step, step.id, "delete button")
+						console.log(prep, prep.id, "delete button")
 						history.push(`/steps`)
 					})
 				}}>Delete Step 
@@ -40,14 +40,14 @@ export const StepsDetail = ({step, setCurrentStep}) => {
 
 
 			<button onClick={() => {
-				history.push(`/steps/edit/${step.id}`)
+				history.push(`/steps/edit/${prep.id}`)
 			}}>Edit
 			</button>
 
 
             {/* <button onClick={
 				() => {
-					completeSteps(step.id)
+					completeSteps(prep.id)
 						.then(() => {
 							history.push("/steps")
 						})
