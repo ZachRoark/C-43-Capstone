@@ -3,11 +3,11 @@ import React, { createContext, useState } from "react"
 export const PrepContext = createContext();
 
 export const PrepProvider = (props) => {
-    const [prepObj, setPrep] = useState([]);
+    const [prep, setPrep] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
 
     const getPrep = () => {
-        console.log ("get prepObj (PrepProvider)")
+        console.log ("get prep (PrepProvider)")
         return fetch(`http://localhost:8088/prep`)
             .then(response => response.json())
             .then(setPrep)
@@ -30,27 +30,27 @@ export const PrepProvider = (props) => {
     }
 
     const deletePrep = prepId => {
-        console.log("delete prepObj (prep provider)")
+        console.log("delete prep (prep provider)")
         return fetch(`http://localhost:8088/prep/${prepId}`, {
             method: "DELETE"
         })
         .then(getPrep)
     }
 
-    const editPrep = prepObj => {
-        return fetch(`http://localhost:8088/prep/${prepObj.id}`, {
+    const editPrep = prep => {
+        return fetch(`http://localhost:8088/prep/${prep.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(prepObj)
+            body: JSON.stringify(prep)
         })
             .then(getPrep)
     }
 
     return (
         <PrepContext.Provider value={{
-            prepObj, getPrep, editPrep, deletePrep, addPrep, getPrepById, setSearchTerms, searchTerms
+            prep, getPrep, editPrep, deletePrep, addPrep, getPrepById, setSearchTerms, searchTerms
         }}>
             {props.children}
         </PrepContext.Provider>

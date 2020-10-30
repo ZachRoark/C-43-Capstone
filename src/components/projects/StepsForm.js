@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { StepsContext } from "./StepsProvider"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, } from "react-router-dom"
 import "./Steps.css"
 
 export const StepsForm = ({step, setCurrentStep}) => {
-    const { addSteps, getStepsById, editSteps, getSteps, } = useContext(StepsContext)
+    const { addSteps, editSteps, } = useContext(StepsContext)
     const { stepName, id, summary, estimateTime, referenceImg} = step;
     const [isLoading, setIsLoading] = useState(false)
-    const {StepsId} = useParams()
     const history = useHistory()
 
 
@@ -19,41 +18,41 @@ export const StepsForm = ({step, setCurrentStep}) => {
 
 const constructStepsObject = () => {
         if(parseInt(step.stepName) === 0) {
-            // window.alert("Select a step")
         } else {
             setIsLoading(true)
             if(step.id){
-                console.log("edit thing")
                 editSteps({
                     id: step.id,
                     stepName: step.stepName,
                     summary: step.summary,
                     estimateTime: step.estimateTime,
+                    referenceImg: step.referenceImg,
                     complete: step.complete,
                     userId: parseInt(step.userId)
                 })
                 .then(() => setCurrentStep({}))
                 .then(() => history.push("/steps"))
-                // .then(() => console.log("Updating Step: ", StepsId))
             }else {
                 addSteps({
                     stepName: step.stepName,
                     summary: step.summary,
                     estimateTime: step.estimateTime,
+                    referenceImg: step.referenceImg,
                     complete: step.complete = false,
                     userId: parseInt(localStorage.getItem("craftit_user"))
                 })
                 .then(() => setCurrentStep({}))
                 .then(() => history.push("/steps"))
-                // .then(() => console.log("Adding new Step"))
             }
         }
     }
 
     return (
         <form className="stepsForm">
-            <h2 className="stepsForm">{step && id ? "Edit Step:" : "Create Step:"}</h2>
 
+            <h2 className="stepsForm">{step && id ? "Edit Step:" : "Create Step:"}</h2>
+            {/* <div className="stepsFormUserVerify">        {step?.user?.id === parseInt(localStorage.getItem("craftit_user")) ?
+            </div> */}
             <fieldset>
                 <div className="from-group">
                     <label htmlFor="stepName">Step Name:</label>

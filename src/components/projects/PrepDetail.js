@@ -3,10 +3,8 @@ import { PrepContext } from "./PrepProvider"
 import { useParams, useHistory } from "react-router-dom"
 // import "./Steps.css"
 
-export const PrepDetail = ({prepObj, setCurrentPrep}) => {
-	console.log("prepdetail #1(prepdetail)")
+export const PrepDetail = ({prep, setCurrentPrep}) => {
 	const { getPrepById , deletePrep} = useContext(PrepContext)
-	console.log("prepdetail #2(prepdetail)")
 	const { prepId } = useParams();
 	const history = useHistory();
 	
@@ -17,26 +15,24 @@ export const PrepDetail = ({prepObj, setCurrentPrep}) => {
 			.then((response) => {
 				setCurrentPrep(response)
 			})
-	}, [prepId])
+	}, [prepId, setCurrentPrep, getPrepById])
 
 
 	return (
 		<section className="prepCard">
-			<h3 className="prepName">{prepObj.prepName}</h3>
+			<h3 className="prepName">{prep.prepName}</h3>
             
             <button onClick={() => {
-				deletePrep(prepObj.id)
-				
+				deletePrep(prep.id)
 					.then(() => {
-						console.log(prepObj, prepObj.id, "delete button")
 						history.push(`/prep`)
 					})
-				}}>Delete Prep 
+				}}>Delete 
 			</button>
 
 
 			<button onClick={() => {
-				history.push(`/prep/edit/${prepObj.id}`)
+				history.push(`/prep/edit/${prep.id}`)
 			}}>Edit
 			</button>
 		</section>
