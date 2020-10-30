@@ -4,24 +4,21 @@ import { useParams, useHistory } from "react-router-dom"
 // import "./Steps.css"
 
 export const StepsDetail = ({step, setCurrentStep}) => {
-	console.log("stepsdetail #1(stepsdetail)")
 	const { getStepsById , deleteSteps} = useContext(StepsContext)
-	console.log("stepsdetail #2(stepsdetail)")
 	const { stepsId } = useParams();
 	const history = useHistory();
 	
 
 	useEffect(() => {
-		console.log("useeffect (stepsdetail)")
 		getStepsById(stepsId)
 			.then((response) => {
 				setCurrentStep(response)
 			})
-	}, [stepsId])
+	}, [stepsId, getStepsById, setCurrentStep])
 
 
 	return (
-		<section className="stepsCard">
+		<section className="editDeleteStepsCard">
 			<h3 className="stepName">{step.stepName}</h3>
             <div className="stepsSummary">{step.summary}</div>
             <div className="estimateTime">{step.estimateTime}</div>
@@ -29,10 +26,8 @@ export const StepsDetail = ({step, setCurrentStep}) => {
 			
             
             <button onClick={() => {
-				deleteSteps(step.id)
-				
+				deleteSteps(step.id)				
 					.then(() => {
-						console.log(step, step.id, "delete button")
 						history.push(`/steps`)
 					})
 				}}>Delete Step 
@@ -44,15 +39,6 @@ export const StepsDetail = ({step, setCurrentStep}) => {
 			}}>Edit
 			</button>
 
-
-            {/* <button onClick={
-				() => {
-					completeSteps(step.id)
-						.then(() => {
-							history.push("/steps")
-						})
-				}}>Step Complete 
-			</button> */}
 		</section>
 	)
 }

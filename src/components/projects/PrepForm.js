@@ -1,38 +1,37 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { PrepContext } from "./PrepProvider"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 // import "./Steps.css"
 
-export const PrepForm = ({prepObj, setCurrentPrep}) => {
-    const { addPrep, getPrepById, editPrep, getPrep, } = useContext(PrepContext)
-    const { prepName, id, summary, estimateTime, referenceImg } = prepObj;
+export const PrepForm = ({prep, setCurrentPrep}) => {
+    const { addPrep, editPrep, } = useContext(PrepContext)
+    const { prepName, id } = prep;
     const [isLoading, setIsLoading] = useState(false)
-    const {PrepId} = useParams()
     const history = useHistory()
 
 
     const handleControlledInputChange = (event) => {
-        const newPrep = {...prepObj}
+        const newPrep = {...prep}
         newPrep[event.target.title] = event.target.value
         setCurrentPrep(newPrep)
     }
     
     const constructPrepObject = () => {
-        if(parseInt(prepObj.prepName) === 0) {
+        if(parseInt(prep.prepName) === 0) {
         } else {
             setIsLoading(true)
-            if(prepObj.id){
+            if(prep.id){
                 console.log("edit thing")
                 editPrep({
-                    id: prepObj.id,
-                    prepName: prepObj.prepName,
-                    userId: parseInt(prepObj.userId)
+                    id: prep.id,
+                    prepName: prep.prepName,
+                    userId: parseInt(prep.userId)
                 })
                 .then(() => setCurrentPrep({}))
                 .then(() => history.push("/prep"))
             }else {
                 addPrep({
-                    prepName: prepObj.prepName,
+                    prepName: prep.prepName,
                     userId: parseInt(localStorage.getItem("craftit_user"))
                 })
                 .then(() => setCurrentPrep({}))
@@ -44,7 +43,7 @@ export const PrepForm = ({prepObj, setCurrentPrep}) => {
 
     return (
         <form className="prepForm">
-            <h2 className="prepForm">{prepObj && id ? "Edit Prep:" : "Create Prep:"}</h2>
+            <h2 className="prepForm">{prep && id ? "Edit" : "Create Prep:"}</h2>
 
             <fieldset>
                 <div className="from-group">
@@ -65,7 +64,7 @@ export const PrepForm = ({prepObj, setCurrentPrep}) => {
                     event.preventDefault() 
                     constructPrepObject()
                 }}>
-            {prepObj && id ? "Save Prep" : "Create Prep"}</button>
+            {prep && id ? "Save" : "Add"}</button>
         </form>
     )
 }

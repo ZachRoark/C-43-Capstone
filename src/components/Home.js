@@ -1,8 +1,22 @@
 import React from "react"
+import
 
 export const Home = () => (
     <>
-        <h2>CraftIt Home</h2>
+        <section className="homeProjects">
+
+            <h2>Current Projects:</h2>
+            <div className="currentProjectBox"> 
+            </div>
+        
+            <h2>Past Projects:</h2>
+            <div className="pastProjectBox">
+            </div>
+
+        </section>
+
+
+
     </>
 )
 

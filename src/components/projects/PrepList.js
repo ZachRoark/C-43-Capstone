@@ -6,38 +6,36 @@ import { useHistory } from "react-router-dom"
 
 export const PrepList = () => {
     console.log("preplist preplist")
-    const { prepObj, getPrep, searchTerms } = useContext(PrepContext)
+    const { prep, getPrep, searchTerms } = useContext(PrepContext)
     const [ filteredPrep, setFilteredPrep ] = useState([])
     const history = useHistory()
 
     useEffect(() => {
         getPrep()
-    }, [])
+    }, [getPrep])
 
 
     useEffect(() => {
         if(searchTerms !== "") {
-            const subset = prepObj.filter(prepObj => prepObj.prepName.toLowerCase().includes(searchTerms.toLowerCase().trim()))
+            const subset = prep.filter(prep => prep.prepName.includes(searchTerms.trim()))
             setFilteredPrep(subset)
-            console.log(subset)
         } else {
-            setFilteredPrep(prepObj)
-            console.log("else prepList")
+            setFilteredPrep(prep)
         }
-    }, [searchTerms, prepObj])
+    }, [searchTerms, prep])
 
 
     return (
         <>
-            <h2>Prep</h2>
+            <h2>Before you get started, what do you need?</h2>
             <button onClick={() => {history.push("/prep/create")}}>
-                Create Prep
+                Add Materials/Tools
             </button>
 
-            <div className="prepObj">
+            <div className="prep">
                 {
-                    filteredPrep.map((prepObj, index) => {
-                        return <PrepCard key={prepObj.id} prepObj={prepObj} index={index}/>
+                    filteredPrep.map((prep, index) => {
+                        return <PrepCard key={prep.id} prep={prep} index={index}/>
                         })
                 }
             </div>
