@@ -11,7 +11,7 @@ export const ProjectsList = () => {
     
     const history = useHistory()
     
-
+//                                          IS THIS THE CURRENT PROJECTS PORTION ALREADY????? IF SO ADD (INCOMPLETE) CAVEAT
 
     
     useEffect(() => {
@@ -20,7 +20,7 @@ export const ProjectsList = () => {
 
     useEffect(() => {
         const user = parseInt(localStorage.getItem("craftit_user"))
-        const usersProjects = projects.filter(project => project.userId === user)
+        const usersProjects = projects.filter(projects => projects.complete === false &&  projects.userId === user)
 
         setFilteredProjects(usersProjects)
     }, [projects, setFilteredProjects])
@@ -28,9 +28,9 @@ export const ProjectsList = () => {
 
     return (
         <>
-            <h2>Projects:</h2>
+            <h2>Current Projects:</h2>
             <button onClick={() => {history.push("/projects/create")}}>
-                Create A Project
+                New Project
             </button>
 
             <div className="projectsListReturn">

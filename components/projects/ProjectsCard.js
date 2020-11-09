@@ -7,12 +7,12 @@ import { ProjectsContext } from "./ProjectsProvider"
 
 
 
-export const ProjectsCard = ({ projects, index }) => {
+export const ProjectsCard = ({ projects }) => {
     const { editProjects } = useContext(ProjectsContext)
     const [completeProject, setCompleteProject] = useState(projects.complete)
     const [publicProject, setPublicProject] = useState(projects.public)
     
-        const handleCompleteProjects = () => {
+    const handleCompleteProjects = () => {
         const changedComplete = !completeProject
         setCompleteProject(changedComplete)
         projects.complete = changedComplete

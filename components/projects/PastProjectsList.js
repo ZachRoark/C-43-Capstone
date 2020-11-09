@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState, } from "react"
 import { useHistory } from "react-router-dom"
-import { ProjectsContext } from "../projects/ProjectsProvider"
-import { ProjectsCard } from "../projects/ProjectsCard"
+import { ProjectsContext } from "./ProjectsProvider"
+import { ProjectsCard } from "./ProjectsCard"
 
 
-export const PastProjectList = () => {
+export const PastProjectsList = () => {
     // This state changes when `getProjects()` is invoked below
     const { projects, getProjects} = useContext(ProjectsContext)
     const [filteredProjects, setFilteredProjects] = useState([])
@@ -23,14 +23,15 @@ export const PastProjectList = () => {
 
     useEffect(() => {
         if(!projects) return
-        const archivedProjects = projects.filter(projects => projects.public === true)/*this variable (projectSteps) filters the steps by project Id */
+        const user = parseInt(localStorage.getItem("craftit_user"))
+        const archivedProjects = projects.filter(projects => projects.complete === true &&  projects.userId === user)/*this variable (projectSteps) filters the steps by project Id */
         setFilteredProjects(archivedProjects)
     }, [projects, setFilteredProjects])
 
 
 return (
     <>
-        <h2>Archived Projects:</h2>
+        <h2>Completed Projects:</h2>
 
         <div className="projectsListReturn">
             {

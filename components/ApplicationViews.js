@@ -13,6 +13,7 @@ import { PrepDetail } from "./prep/PrepDetail"
 
 import { ProjectsProvider } from "./projects/ProjectsProvider"
 import { ProjectsList } from "./projects/ProjectsList"
+import { PastProjectsList } from "./projects/PastProjectsList"
 import { ProjectsForm } from "./projects/ProjectsForm"
 import { ProjectsDetail } from "./projects/ProjectsDetail"
 
@@ -49,7 +50,8 @@ export const ApplicationViews = () => {
             <PrepProvider>
                 <Route exact path="/projects">
                     <Home projects={currentProject} setCurrentProject={setCurrentProject}/>
-                    {/* <PastProjectsList projects={currentProject} setCurrentProject={setCurrentProject}/> */}
+                    <ProjectsList/>
+                    <PastProjectsList projects={currentProject} setCurrentProject={setCurrentProject}/>
                     {/* <CurrentProjectList projects={currentProject} setCurrentProject={setCurrentProject}/> */}
                 </Route>
             </PrepProvider>
