@@ -7,7 +7,6 @@ export const PrepProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("");
 
     const getPrep = () => {
-        console.log ("get prep (PrepProvider)")
         return fetch(`http://localhost:8088/prep`)
             .then(response => response.json())
             .then(setPrep)
@@ -30,7 +29,6 @@ export const PrepProvider = (props) => {
     }
 
     const deletePrep = prepId => {
-        console.log("delete prep (prep provider)")
         return fetch(`http://localhost:8088/prep/${prepId}`, {
             method: "DELETE"
         })

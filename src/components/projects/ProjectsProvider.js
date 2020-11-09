@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react"
 
+
 export const ProjectsContext = createContext();
 
 export const ProjectsProvider = (props) => {
@@ -25,7 +26,8 @@ export const ProjectsProvider = (props) => {
 
     const getProjectsById = (id) => {
         return fetch(`http://localhost:8088/projects/${id}?_expand=user`)
-            .then(response => response.json())
+        
+            .then(response =>  response.json())
     }
 
     const deleteProjects = projectsId => {

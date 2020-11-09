@@ -1,16 +1,15 @@
 import React, { useContext, useEffect } from "react"
 import { PrepContext } from "./PrepProvider"
 import { useParams, useHistory } from "react-router-dom"
-// import "./Steps.css"
 
-export const PrepDetail = ({prep, setCurrentPrep}) => {
+
+export const PrepDetail = ({prep, setCurrentPrep, projects, setCurrentProject}) => {
 	const { getPrepById , deletePrep} = useContext(PrepContext)
 	const { prepId } = useParams();
 	const history = useHistory();
 	
 
 	useEffect(() => {
-		console.log("useeffect (prepdetail)")
 		getPrepById(prepId)
 			.then((response) => {
 				setCurrentPrep(response)
@@ -24,10 +23,9 @@ export const PrepDetail = ({prep, setCurrentPrep}) => {
             
             <button onClick={() => {
 				deletePrep(prep.id)
-					.then(() => {
-						history.push(`/prep`)
-					})
-				}}>Delete 
+				.then(() => setCurrentProject({}))
+				.then(() => {history.push(`/projects/detail/${projects.id}`)})
+			}}>Delete 
 			</button>
 
 
@@ -35,6 +33,7 @@ export const PrepDetail = ({prep, setCurrentPrep}) => {
 				history.push(`/prep/edit/${prep.id}`)
 			}}>Edit
 			</button>
+			
 		</section>
 	)
 }

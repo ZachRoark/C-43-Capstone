@@ -2,23 +2,23 @@ import React, { useContext, useEffect, useState, } from "react"
 import { StepsContext } from "./StepsProvider"
 import { StepsCard } from "./StepsCard"
 import { useHistory } from "react-router-dom"
-// import "./Steps.css"
 
-export const StepsList = () => {
+
+export const StepsList = ({projects}) => {
     const { steps, getSteps} = useContext(StepsContext)
     const [filteredSteps, setFilteredSteps] = useState([])
-    
     const history = useHistory()
     
     useEffect(() => {
         getSteps()
     }, [])
 
+
     useEffect(() => {
-        const user = parseInt(localStorage.getItem("craftit_user"))
-        const usersSteps = steps.filter(step => step.userId === user)
-        setFilteredSteps(usersSteps)
-    }, [steps, setFilteredSteps])
+        if(!projects) return
+        const projectSteps = steps.filter(step => step.projectId === projects.id)
+        setFilteredSteps(projectSteps)
+    }, [steps, setFilteredSteps, projects])
 
 
     return (

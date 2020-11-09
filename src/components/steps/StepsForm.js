@@ -3,9 +3,10 @@ import { StepsContext } from "./StepsProvider"
 import { useHistory, } from "react-router-dom"
 import "./Steps.css"
 
-export const StepsForm = ({step, setCurrentStep}) => {
+
+export const StepsForm = ({step, setCurrentStep, projects, setCurrentProject}) => {
     const { addSteps, editSteps, } = useContext(StepsContext)
-    const { stepName, id, summary, estimateTime, referenceImg} = step;
+    const { stepName, id, summary, estimateTime, referenceImg } = step;
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
 
@@ -16,7 +17,7 @@ export const StepsForm = ({step, setCurrentStep}) => {
         setCurrentStep(newSteps)
     }
 
-const constructStepsObject = () => {
+    const constructStepsObject = () => {
         if(parseInt(step.stepName) === 0) {
         } else {
             setIsLoading(true)
@@ -28,10 +29,11 @@ const constructStepsObject = () => {
                     estimateTime: step.estimateTime,
                     referenceImg: step.referenceImg,
                     complete: step.complete,
-                    userId: parseInt(step.userId)
+                    userId: parseInt(step.userId),
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentStep({}))
-                .then(() => history.push("/steps"))
+                .then(() => history.push(`/projects/detail/${projects.id}`))
             }else {
                 addSteps({
                     stepName: step.stepName,
@@ -39,19 +41,22 @@ const constructStepsObject = () => {
                     estimateTime: step.estimateTime,
                     referenceImg: step.referenceImg,
                     complete: step.complete = false,
-                    userId: parseInt(localStorage.getItem("craftit_user"))
+                    userId: parseInt(localStorage.getItem("craftit_user")),
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentStep({}))
-                .then(() => history.push("/steps"))
+                .then(() => setCurrentProject({}))
+                .then(() => history.push(`/projects/detail/${projects.id}`))
             }
         }
     }
 
+    
     return (
         <form className="stepsForm">
 
             <h2 className="stepsForm">{step && id ? "Edit Step:" : "Create Step:"}</h2>
-            {/* <div className="stepsFormUserVerify">        {step?.user?.id === parseInt(localStorage.getItem("craftit_user")) ?
+            {/* <div className="stepsFormUserVerify">  {step?.user?.id === parseInt(localStorage.getItem("craftit_user")) ?
             </div> */}
             <fieldset>
                 <div className="from-group">
