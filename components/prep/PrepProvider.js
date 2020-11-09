@@ -29,7 +29,6 @@ export const PrepProvider = (props) => {
     }
 
     const deletePrep = prepId => {
-        console.log("delete prep (prep provider)")
         return fetch(`http://localhost:8088/prep/${prepId}`, {
             method: "DELETE"
         })

@@ -2,16 +2,12 @@ import React, { useContext, useEffect, useState, } from "react"
 import { ProjectsContext } from "./ProjectsProvider"
 import { ProjectsCard } from "./ProjectsCard"
 import { useHistory } from "react-router-dom"
-// import "./Projects.css"
+import "./Projects.css"
 
 export const ProjectsList = () => {
-    // This state changes when `getProjects()` is invoked below
     const { projects, getProjects} = useContext(ProjectsContext)
-    const [filteredProjects, setFilteredProjects] = useState([])
-    
+    const [filteredProjects, setFilteredProjects] = useState([])   
     const history = useHistory()
-    
-//                                          IS THIS THE CURRENT PROJECTS PORTION ALREADY????? IF SO ADD (INCOMPLETE) CAVEAT
 
     
     useEffect(() => {
@@ -28,24 +24,23 @@ export const ProjectsList = () => {
 
     return (
         <>
-            <h2>Current Projects:</h2>
+            <div className="newProjectButton">
             <button onClick={() => {history.push("/projects/create")}}>
                 New Project
             </button>
+            </div>
 
-            <div className="projectsListReturn">
-                {
-                    filteredProjects.map((projects, index, ) => {
-                        
-                            return <ProjectsCard 
-                            key={projects.id} 
-                            projects={projects} 
-                            index={index}
-                        />
-                        
-                        })
-                }
-                
+            <h2 className="currentProjectsBox">Current Projects:</h2>
+
+            <div className="currentProjectsListReturn">
+                {filteredProjects.map((projects, index, ) => {                       
+                    return <ProjectsCard 
+                        key={projects.id} 
+                        projects={projects} 
+                        index={index}
+                    />
+                })
+                }               
             </div>
         </>
     )

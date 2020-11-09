@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { StepsContext } from "./StepsProvider"
 import { useParams, useHistory } from "react-router-dom"
-// import "./Steps.css"
+
 
 export const StepsDetail = ({step, setCurrentStep, projects, setCurrentProject}) => {
 	const { getStepsById , deleteSteps} = useContext(StepsContext)

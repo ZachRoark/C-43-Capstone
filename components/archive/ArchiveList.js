@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState, } from "react"
 import { useHistory } from "react-router-dom"
 import { ProjectsContext } from "../projects/ProjectsProvider"
 import { ProjectsCard } from "../projects/ProjectsCard"
-
+import "../projects/Projects.css"
 
 export const ArchiveList = () => {
-    // This state changes when `getProjects()` is invoked below
     const { projects, getProjects} = useContext(ProjectsContext)
     const [filteredProjects, setFilteredProjects] = useState([])
     const history = useHistory()
@@ -15,11 +14,6 @@ export const ArchiveList = () => {
         getProjects()
     }, [])
 
-    // useEffect(() => {
-    //     const user = parseInt(localStorage.getItem("craftit_user"))
-    //     const usersSteps = steps.filter(step => step.userId === user)/*this variable (userSteps) filters the steps by user*/
-    //     setFilteredSteps(usersSteps)
-    // }, [steps, setFilteredSteps])
 
     useEffect(() => {
         if(!projects) return

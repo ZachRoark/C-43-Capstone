@@ -95,10 +95,3 @@ const constructProjectsObject = () => {
         </form>
     )
 }
-
-
-
-
-
-
-// project form to populate on the project page from new project button on homepage

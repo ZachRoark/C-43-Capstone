@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 import {Link} from "react-router-dom"
 import { StepsContext } from "./StepsProvider"
-// import "./Steps.css"
+
 
 export const StepsCard = ({ steps, index }) => {
     const { editSteps } = useContext(StepsContext)

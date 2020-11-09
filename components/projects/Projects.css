@@ -1,0 +1,33 @@
+.projectsCard {
+    display: flex;
+    flex-direction: row;
+    border: solid;
+    /* border-spacing: 5px; */
+    /* border-color: #7f4700; */
+    border-radius: 25px;
+    background: #ffa229;;
+    padding: 10px;
+    width: 70px;
+    height: 50px;
+    margin: 0 0 0 8px;
+}
+
+.projectsCardText {
+    color: #7f4700;;
+}
+
+.currentProjectsListReturn{
+    display: flex;
+    flex-direction: row; 
+}
+
+.pastProjectsListReturn{
+    display: flex;
+    flex-direction: row; 
+}
+
+
+.projectsListReturn{
+    display: flex;
+    flex-direction: row; 
+}

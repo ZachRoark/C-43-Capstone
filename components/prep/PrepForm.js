@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { PrepContext } from "./PrepProvider"
 import { useHistory } from "react-router-dom"
-// import "./Steps.css"
+
 
 export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) => {
     const { addPrep, editPrep, } = useContext(PrepContext)
@@ -21,7 +21,6 @@ export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) =>
         } else {
             setIsLoading(true)
             if(prep.id){
-                console.log("edit thing")
                 editPrep({
                     id: prep.id,
                     prepName: prep.prepName,

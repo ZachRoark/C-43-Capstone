@@ -17,10 +17,7 @@ import { PastProjectsList } from "./projects/PastProjectsList"
 import { ProjectsForm } from "./projects/ProjectsForm"
 import { ProjectsDetail } from "./projects/ProjectsDetail"
 
-// import { ArchiveProvider } from "./archive/ArchiveProvider"
 import { ArchiveList } from "./archive/ArchiveList"
-// import { PastProjectsList } from "./homeLists/PastProjectsList"
-// import { CurrentProjectsList } from "./homeLists/CurrentProjectsList"
 import { Home } from "./Home"
 
 
@@ -37,14 +34,12 @@ export const ApplicationViews = () => {
     return (
         <>
 
-{/* Render the location list when http://localhost:3000/archive */}
             <ProjectsProvider>    
                 <Route exact path="/archive">
                 <ArchiveList projects={currentProject} setCurrentProject={setCurrentProject}/>
                 </Route>
             </ProjectsProvider>
 
-{/* Render the Projects list when http://localhost:3000/projects */}
     <ProjectsProvider>
         <StepsProvider>
             <PrepProvider>
@@ -52,7 +47,6 @@ export const ApplicationViews = () => {
                     <Home projects={currentProject} setCurrentProject={setCurrentProject}/>
                     <ProjectsList/>
                     <PastProjectsList projects={currentProject} setCurrentProject={setCurrentProject}/>
-                    {/* <CurrentProjectList projects={currentProject} setCurrentProject={setCurrentProject}/> */}
                 </Route>
             </PrepProvider>
         </StepsProvider>
@@ -90,8 +84,6 @@ export const ApplicationViews = () => {
         </StepsProvider>
     </ProjectsProvider>
 
-{/* Render the prep list when http://localhost:3000/prep */}
-
         <ProjectsProvider>
             <PrepProvider>
                 <Route exact path="/prep/create">
@@ -108,7 +100,6 @@ export const ApplicationViews = () => {
             </PrepProvider>
         </ProjectsProvider>
 
-{/* Render the steps list when http://localhost:3000/steps */}
             <StepsProvider>
 
                 <Route exact path="/steps/create">
@@ -127,43 +118,3 @@ export const ApplicationViews = () => {
         </>
     )
 }
-
-
-
-
-// home page needs to display current and past projects, 
-// differentiated by the complete boolean
-
-// use the same method for the archive as the home page 
-
-//populate user page with username/personal website options
-
-// log out feature
-
-
-
-// TODO TOMORROW:
-
-// basic styling
-
-
-
-
-
-
-
-// STRETCH GOALS:
-
-// create favorites box, have it populate on the left side of
-// home page
-
-// create followed users box, have it populate on the left side of
-// home page
-
-// create a follow users option from projects picked from the archive
-
-// create a ratings system for projects
-
-
-
-

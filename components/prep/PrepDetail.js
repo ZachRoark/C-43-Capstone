@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { PrepContext } from "./PrepProvider"
 import { useParams, useHistory } from "react-router-dom"
-// import "./Steps.css"
+
 
 export const PrepDetail = ({prep, setCurrentPrep, projects, setCurrentProject}) => {
 	const { getPrepById , deletePrep} = useContext(PrepContext)

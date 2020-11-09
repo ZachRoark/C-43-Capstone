@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { PrepContext } from "./PrepProvider"
 import { PrepCard } from "./PrepCard"
 import { useHistory } from "react-router-dom"
-// import "./Prep.css"
+
 
 export const PrepList = ({projects}) => {
-    // This state changes when `getPrep()` is invoked below
     const { prep, getPrep } = useContext(PrepContext)
     const [ filteredPrep, setFilteredPrep ] = useState([])
     const history = useHistory()
@@ -17,7 +16,7 @@ export const PrepList = ({projects}) => {
 
     useEffect(() => {
         if(!projects) return
-        const projectPrep = prep.filter(prep => prep.projectId === projects.id)/*this variable (projectPrep) filters the prep by project Id */
+        const projectPrep = prep.filter(prep => prep.projectId === projects.id)
         setFilteredPrep(projectPrep)
     }, [prep, setFilteredPrep, projects])
 
