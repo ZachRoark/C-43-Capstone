@@ -1,14 +1,27 @@
+/* .navbarBox {
+    display: grid;
+    grid-area: header;
+
+    background-color: #ffa229;
+} */
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    position: static;
+    padding-right: 40px;
+    background-color: #ffa229;
 }
 
-.navbar__archive {
-    flex-basis: 20%;
-    list-style-type: none;
+.navbarHome {
+    padding-right: 40px;
 }
-.navbar__home {
-    flex-basis: 20%;
-    list-style-type: none;
+.navbarArchive {
+    padding-right: 40px;
 }
+.navbarLink {
+    color: #7f4700;   
+}
+

@@ -1,0 +1,327 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "zach",
+      "email": "zach@email.com"
+    },
+    {
+      "id": 2,
+      "name": "ashton",
+      "email": "ashton@email.com"
+    },
+    {
+      "id": 3,
+      "name": "mollie",
+      "email": "mollie@email.com"
+    },
+    {
+      "email": "zach2@email.com",
+      "username": "zach2",
+      "id": 4
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "projectName": "main",
+      "summary": "not a chair this time",
+      "estimateTime": "two more days",
+      "complete": true,
+      "public": false,
+      "userId": 1,
+      "user": {
+        "id": 1,
+        "name": "zach",
+        "email": "zach@email.com"
+      }
+    },
+    {
+      "id": 2,
+      "projectName": "ceramic mug",
+      "userId": 2,
+      "summary": "summary",
+      "estimatedTime": "12 minutes, 11 of those just think'n about mugs",
+      "public": false,
+      "complete": false
+    },
+    {
+      "id": 3,
+      "projectName": "id test2, user 3?",
+      "summary": "summary: has the original userID of 3, and an id of 3.",
+      "estimateTime": "stuff",
+      "complete": false,
+      "public": true,
+      "userId": 3
+    },
+    {
+      "id": 4,
+      "projectName": "sharpen a chef knife",
+      "summary": "not much to say",
+      "estimateTime": "2 hours",
+      "complete": false,
+      "public": true,
+      "userId": 1
+    },
+    {
+      "projectName": "newest project",
+      "summary": "restore a tool",
+      "estimateTime": "1 week",
+      "complete": true,
+      "public": true,
+      "userId": 1,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "projectName": "build a thing",
+      "summary": "grab some stuff and glue it",
+      "estimateTime": "3 hours",
+      "complete": true,
+      "public": true,
+      "userId": 1
+    },
+    {
+      "projectName": "newest project",
+      "summary": "yet again not a chair",
+      "estimateTime": "> 3 hours, < 1 day",
+      "complete": false,
+      "public": false,
+      "userId": 1,
+      "id": 7
+    }
+  ],
+  "prep": [
+    {
+      "id": 2,
+      "prepName": "lumber2.5",
+      "projectId": 2,
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "projectId": 3,
+      "userId": 3,
+      "prepName": "lumber3"
+    },
+    {
+      "prepName": "look at this new thing2",
+      "userId": 1,
+      "projectId": 2,
+      "id": 8
+    },
+    {
+      "prepName": "coffee",
+      "userId": 1,
+      "projectId": 2,
+      "id": 9
+    },
+    {
+      "id": 10,
+      "prepName": "lumber",
+      "userId": 1,
+      "projectId": 2
+    },
+    {
+      "id": 11,
+      "prepName": "something better2",
+      "userId": 1,
+      "projectId": 1
+    },
+    {
+      "id": 13,
+      "prepName": "lumber2.1",
+      "userId": 1,
+      "projectId": 2
+    },
+    {
+      "prepName": "box o' junk",
+      "userId": 1,
+      "projectId": 1,
+      "id": 14
+    },
+    {
+      "prepName": "1212121",
+      "userId": 1,
+      "projectId": 1,
+      "id": 15
+    },
+    {
+      "prepName": "hammer, hold the nails",
+      "userId": 1,
+      "projectId": null,
+      "id": 16
+    },
+    {
+      "prepName": "hammer, hold the nails2",
+      "userId": 1,
+      "projectId": null,
+      "id": 17
+    },
+    {
+      "prepName": "hammer, hold the nails3",
+      "userId": 1,
+      "projectId": null,
+      "id": 18
+    },
+    {
+      "prepName": "new prep test",
+      "userId": 1,
+      "projectId": null,
+      "id": 19
+    },
+    {
+      "prepName": "look at this new thing",
+      "userId": 1,
+      "projectId": null,
+      "id": 20
+    },
+    {
+      "prepName": "new prep test2",
+      "userId": 1,
+      "projectId": null,
+      "id": 21
+    },
+    {
+      "prepName": "look at this new thing3",
+      "userId": 1,
+      "projectId": null,
+      "id": 22
+    },
+    {
+      "id": 24,
+      "prepName": "look at this new thing2",
+      "userId": 1,
+      "projectId": 1
+    },
+    {
+      "prepName": "new prep test",
+      "userId": 1,
+      "projectId": 3,
+      "id": 25
+    },
+    {
+      "prepName": "hammer, hold the nails",
+      "userId": 1,
+      "projectId": 5,
+      "id": 26
+    },
+    {
+      "prepName": "lumber (just guess how much)",
+      "userId": 1,
+      "projectId": 5,
+      "id": 27
+    }
+  ],
+  "steps": [
+    {
+      "id": 6,
+      "stepName": "read another book",
+      "summary": "find book, grab book, open book, and stare until understanding dawns",
+      "estimateTime": "<><",
+      "referenceImg": "cloudinaryLink",
+      "complete": false,
+      "userId": 1,
+      "projectId": 1
+    },
+    {
+      "id": 16,
+      "stepName": "latest step4",
+      "summary": "sum",
+      "estimateTime": "another minute or so",
+      "referenceImg": "",
+      "complete": false,
+      "userId": 1,
+      "projectId": 1
+    },
+    {
+      "stepName": "newest step3",
+      "summary": "edit test 6",
+      "estimateTime": "another minute or so",
+      "referenceImg": "",
+      "complete": false,
+      "userId": 1,
+      "projectId": 3,
+      "id": 19
+    },
+    {
+      "stepName": "newest step by a bit",
+      "summary": "edit test 5",
+      "estimateTime": "3 hours",
+      "complete": false,
+      "userId": 1,
+      "projectId": 2,
+      "id": 21
+    },
+    {
+      "stepName": "project id test",
+      "summary": "",
+      "estimateTime": null,
+      "referenceImg": "",
+      "complete": false,
+      "userId": 1,
+      "projectId": 1,
+      "id": 22
+    },
+    {
+      "stepName": "edit test 6",
+      "summary": "edit test 6",
+      "estimateTime": "3 hours",
+      "referenceImg": "",
+      "complete": false,
+      "userId": 1,
+      "projectId": 1,
+      "id": 23
+    },
+    {
+      "stepName": "doublenew",
+      "summary": "generic summary",
+      "estimateTime": "2 minutes",
+      "referenceImg": "",
+      "complete": false,
+      "userId": 1,
+      "projectId": 1,
+      "id": 24
+    },
+    {
+      "id": 25,
+      "stepName": "grab the lumber",
+      "summary": "with your hands",
+      "estimateTime": "2 minutes",
+      "referenceImg": "",
+      "complete": true,
+      "userId": 1,
+      "projectId": 5
+    },
+    {
+      "stepName": "nail it together",
+      "summary": "the the hammer and nails",
+      "estimateTime": "3 hours",
+      "complete": false,
+      "userId": 1,
+      "projectId": 5,
+      "id": 26
+    },
+    {
+      "stepName": "buy nails",
+      "summary": "because you forgot",
+      "estimateTime": "> 3 hours, < 1 day",
+      "complete": false,
+      "userId": 1,
+      "projectId": 5,
+      "id": 27
+    }
+  ],
+  "followed": [
+    {
+      "followedId": 2,
+      "userId": 1,
+      "followedUserId": 3
+    },
+    {
+      "followedId": 3,
+      "userId": 2,
+      "followedUserId": 3
+    }
+  ]
+}

@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState, } from "react"
 import { ProjectsContext } from "./ProjectsProvider"
 import { ProjectsCard } from "./ProjectsCard"
 import { useHistory } from "react-router-dom"
-// import "./Projects.css"
+import "./Projects.css"
 
 export const ProjectsList = () => {
     const { projects, getProjects} = useContext(ProjectsContext)
-    const [filteredProjects, setFilteredProjects] = useState([])
-    
+    const [filteredProjects, setFilteredProjects] = useState([])   
     const history = useHistory()
+
     
     useEffect(() => {
         getProjects()
@@ -16,31 +16,31 @@ export const ProjectsList = () => {
 
     useEffect(() => {
         const user = parseInt(localStorage.getItem("craftit_user"))
-        const usersProjects = projects.filter(project => project.userId === user)
+        const usersProjects = projects.filter(projects => projects.complete === false &&  projects.userId === user)
+
         setFilteredProjects(usersProjects)
     }, [projects, setFilteredProjects])
 
 
     return (
         <>
-            <h2>Projects:</h2>
+            <div className="newProjectButton">
             <button onClick={() => {history.push("/projects/create")}}>
-                Create A Project
+                New Project
             </button>
+            </div>
 
-            <div className="projectsListReturn">
-                {
-                    filteredProjects.map((projects, index, ) => {
-                        
-                            return <ProjectsCard 
-                            key={projects.id} 
-                            projects={projects} 
-                            index={index}
-                        />
-                        
-                        })
-                }
-                
+            <h2 className="currentProjectsBox">Current Projects:</h2>
+
+            <div className="currentProjectsListReturn">
+                {filteredProjects.map((projects, index, ) => {                       
+                    return <ProjectsCard 
+                        key={projects.id} 
+                        projects={projects} 
+                        index={index}
+                    />
+                })
+                }               
             </div>
         </>
     )

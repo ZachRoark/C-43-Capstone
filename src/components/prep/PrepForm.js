@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react"
 import { PrepContext } from "./PrepProvider"
 import { useHistory } from "react-router-dom"
-// import "./Steps.css"
 
-export const PrepForm = ({prep, setCurrentPrep}) => {
+
+export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) => {
     const { addPrep, editPrep, } = useContext(PrepContext)
     const { prepName, id } = prep;
     const [isLoading, setIsLoading] = useState(false)
@@ -21,21 +21,23 @@ export const PrepForm = ({prep, setCurrentPrep}) => {
         } else {
             setIsLoading(true)
             if(prep.id){
-                console.log("edit thing")
                 editPrep({
                     id: prep.id,
                     prepName: prep.prepName,
-                    userId: parseInt(prep.userId)
+                    userId: parseInt(prep.userId),
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentPrep({}))
-                .then(() => history.push("/prep"))
+                .then(() => history.push(`/projects/detail/${projects.id}`))
             }else {
                 addPrep({
                     prepName: prep.prepName,
-                    userId: parseInt(localStorage.getItem("craftit_user"))
+                    userId: parseInt(localStorage.getItem("craftit_user")),
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentPrep({}))
-                .then(() => history.push("/prep"))
+                .then(() => setCurrentProject({}))
+                .then(() => history.push(`/projects/detail/${projects.id}`))
             }
         }
     }
