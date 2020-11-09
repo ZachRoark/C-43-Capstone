@@ -4,7 +4,7 @@ import { ProjectsContext } from "../projects/ProjectsProvider"
 import { ProjectsCard } from "../projects/ProjectsCard"
 
 
-export const ArchiveList = () => {
+export const PastProjectList = () => {
     // This state changes when `getProjects()` is invoked below
     const { projects, getProjects} = useContext(ProjectsContext)
     const [filteredProjects, setFilteredProjects] = useState([])

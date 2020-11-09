@@ -4,7 +4,7 @@ export const Archive = () => (
     <>
         <section className="archiveProjects">
 
-            <h2>Archived Projects:</h2>
+            <h2>Archived Projects2:</h2>
             <div className="publicProjectBox"> 
             </div>
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { PrepContext } from "./PrepProvider"
 import { useHistory } from "react-router-dom"
-import "./Prep.css"
+// import "./Steps.css"
 
 export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) => {
     const { addPrep, editPrep, } = useContext(PrepContext)
@@ -26,7 +26,7 @@ export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) =>
                     id: prep.id,
                     prepName: prep.prepName,
                     userId: parseInt(prep.userId),
-                    projectId: parseInt(prep.projectId)
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentPrep({}))
                 .then(() => history.push(`/projects/detail/${projects.id}`))
@@ -34,10 +34,8 @@ export const PrepForm = ({prep, setCurrentPrep, projects, setCurrentProject}) =>
                 addPrep({
                     prepName: prep.prepName,
                     userId: parseInt(localStorage.getItem("craftit_user")),
-                    projectId: parseInt(prep.projectId)
-                    // connet projectId with projects.id when im not an idiot
+                    projectId: parseInt(projects.id)
                 })
-                // console.log(projects)
                 .then(() => setCurrentPrep({}))
                 .then(() => setCurrentProject({}))
                 .then(() => history.push(`/projects/detail/${projects.id}`))

@@ -11,11 +11,9 @@ export const ProjectsList = () => {
     
     const history = useHistory()
     
-        /*
-        What's the effect this is reponding to? Component was
-        "mounted" to the DOM. React renders blank HTML first,
-        then gets the data, then re-renders.
-        */
+
+
+    
     useEffect(() => {
         getProjects()
     }, [])
@@ -23,8 +21,8 @@ export const ProjectsList = () => {
     useEffect(() => {
         const user = parseInt(localStorage.getItem("craftit_user"))
         const usersProjects = projects.filter(project => project.userId === user)
+
         setFilteredProjects(usersProjects)
-        console.log(usersProjects, 'user')
     }, [projects, setFilteredProjects])
 
 

@@ -4,30 +4,22 @@ import { PrepCard } from "./PrepCard"
 import { useHistory } from "react-router-dom"
 // import "./Prep.css"
 
-export const PrepList = () => {
+export const PrepList = ({projects}) => {
     // This state changes when `getPrep()` is invoked below
     const { prep, getPrep } = useContext(PrepContext)
     const [ filteredPrep, setFilteredPrep ] = useState([])
-    
     const history = useHistory()
 
-        /*
-        What's the effect this is reponding to? Component was
-        "mounted" to the DOM. React renders blank HTML first,
-        then gets the data, then re-renders.
-        */
     useEffect(() => {
         getPrep()
-    }, [getPrep])
+    }, [])
 
 
     useEffect(() => {
-        const user = parseInt(localStorage.getItem("craftit_user"))
-
-        const usersPrep = prep.filter(prep => prep.userId === user) 
-        setFilteredPrep(usersPrep)
-
-    }, [getPrep, setFilteredPrep])
+        if(!projects) return
+        const projectPrep = prep.filter(prep => prep.projectId === projects.id)/*this variable (projectPrep) filters the prep by project Id */
+        setFilteredPrep(projectPrep)
+    }, [prep, setFilteredPrep, projects])
 
 
     return (

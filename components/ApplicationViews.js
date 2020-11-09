@@ -17,10 +17,10 @@ import { ProjectsForm } from "./projects/ProjectsForm"
 import { ProjectsDetail } from "./projects/ProjectsDetail"
 
 // import { ArchiveProvider } from "./archive/ArchiveProvider"
-// import { ArchiveList } from "./archive/ArchiveList"
-
+import { ArchiveList } from "./archive/ArchiveList"
+// import { PastProjectsList } from "./homeLists/PastProjectsList"
+// import { CurrentProjectsList } from "./homeLists/CurrentProjectsList"
 import { Home } from "./Home"
-import { Archive } from "./Archive"
 
 
 export const ApplicationViews = () => {
@@ -37,17 +37,20 @@ export const ApplicationViews = () => {
         <>
 
 {/* Render the location list when http://localhost:3000/archive */}
+            <ProjectsProvider>    
                 <Route exact path="/archive">
-                    {/* <Archivelist /> */}
+                <ArchiveList projects={currentProject} setCurrentProject={setCurrentProject}/>
                 </Route>
+            </ProjectsProvider>
 
 {/* Render the Projects list when http://localhost:3000/projects */}
     <ProjectsProvider>
         <StepsProvider>
             <PrepProvider>
                 <Route exact path="/projects">
-                    <Home />
-                    <ProjectsList />
+                    <Home projects={currentProject} setCurrentProject={setCurrentProject}/>
+                    {/* <PastProjectsList projects={currentProject} setCurrentProject={setCurrentProject}/> */}
+                    {/* <CurrentProjectList projects={currentProject} setCurrentProject={setCurrentProject}/> */}
                 </Route>
             </PrepProvider>
         </StepsProvider>
@@ -68,8 +71,8 @@ export const ApplicationViews = () => {
             <PrepProvider>
                 <Route exact path="/projects/detail/:projectsId(\d+)">
                     <ProjectsDetail project={currentProject} setCurrentProject={setCurrentProject}/>
-                    <PrepList />
-                    <StepsList />
+                    <PrepList projects={currentProject} />
+                    <StepsList projects={currentProject} />
                 </Route>
             </PrepProvider>
         </StepsProvider>
@@ -89,10 +92,6 @@ export const ApplicationViews = () => {
 
         <ProjectsProvider>
             <PrepProvider>
-                <Route exact path="/prep">
-                    <PrepList />
-                </Route>
-
                 <Route exact path="/prep/create">
                     <PrepForm prep={currentPrep} setCurrentPrep={setCurrentPrep} projects={currentProject} setCurrentProject={setCurrentProject}/>
                 </Route>
@@ -109,9 +108,6 @@ export const ApplicationViews = () => {
 
 {/* Render the steps list when http://localhost:3000/steps */}
             <StepsProvider>
-                <Route exact path="/steps">
-                    <StepsList />
-                </Route>
 
                 <Route exact path="/steps/create">
                     <StepsForm step={currentStep} setCurrentStep={setCurrentStep} projects={currentProject} setCurrentProject={setCurrentProject}/>
@@ -131,15 +127,7 @@ export const ApplicationViews = () => {
 }
 
 
-// TODO TODAY:
-// add steps and prep files together into the project files, 
-// have them routed into the same place(/prep/create and 
-// /steps/create etc.) somehow. 
 
-// need a new project button on homepage
-
-// when all steps are complete, a project complete and the public
-// buttons appear
 
 // home page needs to display current and past projects, 
 // differentiated by the complete boolean
@@ -155,6 +143,7 @@ export const ApplicationViews = () => {
 // TODO TOMORROW:
 
 // basic styling
+
 
 
 

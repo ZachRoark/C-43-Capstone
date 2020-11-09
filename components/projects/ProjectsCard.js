@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react"
 import {Link} from "react-router-dom"
 import { ProjectsContext } from "./ProjectsProvider"
@@ -9,11 +10,19 @@ import { ProjectsContext } from "./ProjectsProvider"
 export const ProjectsCard = ({ projects, index }) => {
     const { editProjects } = useContext(ProjectsContext)
     const [completeProject, setCompleteProject] = useState(projects.complete)
-   
-    const handleCompleteProjects = () => {
+    const [publicProject, setPublicProject] = useState(projects.public)
+    
+        const handleCompleteProjects = () => {
         const changedComplete = !completeProject
         setCompleteProject(changedComplete)
         projects.complete = changedComplete
+        editProjects(projects)
+    }
+
+    const handlePublicProjects = () => {
+        const changedPublic = !publicProject
+        setPublicProject(changedPublic)
+        projects.public = changedPublic
         editProjects(projects)
     }
 
@@ -22,19 +31,19 @@ export const ProjectsCard = ({ projects, index }) => {
         <Link to={`/projects/detail/${projects.id}`}>{ projects.projectName }
         </Link>
 
-        {/* <div className="prepBox"> Prep{ projects.summary }</div> */}
-        <div className="stepsBox">{ projects.estimateTime }</div>
-        <div className="CompleteBox">{ projects.referenceImg }</div>
-
-        <input type="checkbox" id="completed" name="completed" checked={completeProject} 
+        <div className="CompleteBox"></div>
+        <input type="checkbox" id="completed" name="completed" checked={completeProject}
             onChange={handleCompleteProjects}
         />
         <label htmlFor="completed">Project Complete?</label>
         
-
+        <div className="PublicBox"></div>
+        <input type="checkbox" id="public" name="public" checked={publicProject}
+            onChange={handlePublicProjects}
+        />
+        <label htmlFor="public">Public?</label>
     </section>
 )}
-
 
 
 

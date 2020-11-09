@@ -3,12 +3,12 @@ import { StepsContext } from "./StepsProvider"
 import { useHistory, } from "react-router-dom"
 import "./Steps.css"
 
+
 export const StepsForm = ({step, setCurrentStep, projects, setCurrentProject}) => {
     const { addSteps, editSteps, } = useContext(StepsContext)
     const { stepName, id, summary, estimateTime, referenceImg } = step;
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
-    // const projectId = projects.id
 
 
     const handleControlledInputChange = (event) => {
@@ -17,7 +17,7 @@ export const StepsForm = ({step, setCurrentStep, projects, setCurrentProject}) =
         setCurrentStep(newSteps)
     }
 
-const constructStepsObject = () => {
+    const constructStepsObject = () => {
         if(parseInt(step.stepName) === 0) {
         } else {
             setIsLoading(true)
@@ -30,7 +30,7 @@ const constructStepsObject = () => {
                     referenceImg: step.referenceImg,
                     complete: step.complete,
                     userId: parseInt(step.userId),
-                    projectId: parseInt(step.projectId)
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentStep({}))
                 .then(() => history.push(`/projects/detail/${projects.id}`))
@@ -42,8 +42,7 @@ const constructStepsObject = () => {
                     referenceImg: step.referenceImg,
                     complete: step.complete = false,
                     userId: parseInt(localStorage.getItem("craftit_user")),
-                    projectId: parseInt(step.projectId)
-                    // not sure how to properly grab project Id
+                    projectId: parseInt(projects.id)
                 })
                 .then(() => setCurrentStep({}))
                 .then(() => setCurrentProject({}))
@@ -52,6 +51,7 @@ const constructStepsObject = () => {
         }
     }
 
+    
     return (
         <form className="stepsForm">
 

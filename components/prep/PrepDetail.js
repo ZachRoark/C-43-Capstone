@@ -33,6 +33,7 @@ export const PrepDetail = ({prep, setCurrentPrep, projects, setCurrentProject}) 
 				history.push(`/prep/edit/${prep.id}`)
 			}}>Edit
 			</button>
+			
 		</section>
 	)
 }
